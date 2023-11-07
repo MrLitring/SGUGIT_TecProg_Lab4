@@ -42,6 +42,10 @@ namespace WindowsFormsApp4
             listBox1.Font = new Font("Microsoft Sans Serif", 16);
             listBox2.Font = new Font("Microsoft Sans Serif", 16);
 
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+
             Random Rnd = new Random();
             for (int r = 0; r < 5; r++)
                 for (int c = 0; c < 5; c++)

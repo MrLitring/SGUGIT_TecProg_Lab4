@@ -45,7 +45,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(203, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Составные ебла";
+            this.label1.Text = "Составные числа";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -55,17 +55,17 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(354, 22);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Матроичные еблища";
+            this.label2.Text = "Матроичные числа";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(572, 3);
+            this.label3.Location = new System.Drawing.Point(634, 3);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 22);
+            this.label3.Size = new System.Drawing.Size(138, 22);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Простые Ебла";
+            this.label3.Text = "Простые числа";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
