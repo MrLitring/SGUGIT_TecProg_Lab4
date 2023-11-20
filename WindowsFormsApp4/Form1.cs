@@ -75,10 +75,13 @@ namespace WindowsFormsApp4
 
                     lItem = -1;
 
-                    string text = dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value.ToString();
+                    if (dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value != null)
+                    {
+                        string text = dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value.ToString();
 
-                    if (text != "")
-                        dataGridView1.DoDragDrop(text, DragDropEffects.Move);
+                        if (text != "")
+                            dataGridView1.DoDragDrop(text, DragDropEffects.Move);
+                    }
                 }
             }
         }
@@ -91,13 +94,16 @@ namespace WindowsFormsApp4
             string value = e.Data.GetData(DataFormats.Text).ToString();
             Point cursorPosition = dataGridView1.PointToClient(new Point(e.X, e.Y));
             System.Windows.Forms.DataGridView.HitTestInfo cellPosition = dataGridView1.HitTest(cursorPosition.X, cursorPosition.Y);
-            
+
             if (cellPosition.ColumnIndex != -1 && cellPosition.RowIndex != -1)
             {
-                dataGridView1[cellPosition.ColumnIndex, cellPosition.RowIndex].Value = value;
-                
-                if (lItem >= 0)
-                    (this.Controls[SourceName] as ListBox).Items.RemoveAt(lItem);
+                if (dataGridView1[cellPosition.ColumnIndex, cellPosition.RowIndex].Value == "")
+                {
+                    dataGridView1[cellPosition.ColumnIndex, cellPosition.RowIndex].Value = value;
+
+                    if (lItem >= 0)
+                        (this.Controls[SourceName] as ListBox).Items.RemoveAt(lItem);
+                }
             }
 
         }
@@ -108,7 +114,7 @@ namespace WindowsFormsApp4
             if (e.Button == MouseButtons.Left)
             {
                 int itemPosition = (sender as ListBox).SelectedIndex;
-                
+
                 if (itemPosition != -1)
                 {
                     SourceName = (sender as ListBox).Name;
@@ -116,8 +122,8 @@ namespace WindowsFormsApp4
                     gRow = -1;
                     lItem = itemPosition;
                     string text = (sender as ListBox).Items[itemPosition].ToString();
-                    
-                    if (text != "") 
+
+                    if (text != "")
                         (sender as ListBox).DoDragDrop(text, DragDropEffects.Move);
                 }
 
@@ -168,7 +174,7 @@ namespace WindowsFormsApp4
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 for (int j = 0; j < dataGridView1.Columns.Count; j++)
                 {
-                        if (dataGridView1.Rows[i].Cells[j].Value.ToString() != "")
+                    if (dataGridView1.Rows[i].Cells[j].Value.ToString() != "")
                         DG++;
                 }
 
@@ -193,6 +199,39 @@ namespace WindowsFormsApp4
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button1);
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            DataGridView.HitTestInfo cellPosoition = dataGridView1.HitTest(e.X, e.Y);
+
+            if (cellPosoition.RowIndex >= 0 && cellPosoition.ColumnIndex >= 0)
+            {
+                SourceName = (sender as DataGridView).Name;
+                gCol = cellPosoition.ColumnIndex;
+                gRow = cellPosoition.RowIndex;
+
+                lItem = -1;
+
+                if (dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value != null && dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value != "")
+                {
+                    string text = dataGridView1.Rows[cellPosoition.RowIndex].Cells[cellPosoition.ColumnIndex].Value.ToString();
+
+                    if (isSimple(int.Parse(text)) == true)
+                    {
+                        listBox2.Items.Add(text);
+                        dataGridView1.Rows[gRow].Cells[gCol].Value = "";
+
+                    }
+                    else
+                    {
+                        listBox1.Items.Add(text);
+                        dataGridView1.Rows[gRow].Cells[gCol].Value = "";
+
+                    }
+                }
+            }
         }
 
         public MainForm()

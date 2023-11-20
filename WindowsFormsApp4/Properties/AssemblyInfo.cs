@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WindowsFormsApp4")]
-[assembly: AssemblyCopyright("Сова Перетраханная")]
+[assembly: AssemblyCopyright("Мороз")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
